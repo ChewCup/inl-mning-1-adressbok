@@ -101,12 +101,15 @@ namespace inlämning_1_adressbok
                         }
                     }
                 }
+                else if (command == "quit")
+                {
+                    Console.WriteLine("Bye!");
+                }
                 else
                 {
                     Console.WriteLine($"Unknown command: {command}");
                 }
-
-            } while (true);
+            } while (command != "quit");
         }
     }
 }
