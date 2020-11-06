@@ -11,11 +11,11 @@ namespace inlämning_1_adressbok
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             // declare
             string command = "";
+            string contactName;
             string filepath;
             List<ContactList> contact = new List<ContactList>();
             Console.WriteLine("****Commands****\nType 'add' to add new contact to your list.\nType 'show' to show your contact list.\n" +
@@ -30,12 +30,12 @@ namespace inlämning_1_adressbok
                 // Källa: https://stackoverflow.com/questions/16725848/how-to-split-text-into-words
                 while ((line = textlines.ReadLine()) != null)
                 {
-                    string[] words = line.Split(new char[] { ' ' }, StringSplitOptions.None); //string[] words = line.Split(' '); 
-                    contact.Add(new ContactList(words[0], words[1], words[2], words[3]));
+                    string[] contactInfo = line.Split(new char[] { ',' }, StringSplitOptions.None); //string[] words = line.Split(' '); 
+                    contact.Add(new ContactList(contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[3]));
                 }
                 textlines.Close();
             }
-            Console.WriteLine("{0,-20}{1,-25}{2,-25}{3,-25}",
+            Console.WriteLine("{0,-20}{1,-26}{2,-26}{3,-26}",
                               "Name", "Address", "Phone", "Mail");
             for (int i = 0; i < contact.Count(); i++)
             {
@@ -61,6 +61,7 @@ namespace inlämning_1_adressbok
                     Console.Write("The E-mail: ");
                     string mail = Console.ReadLine();
                     contact.Add(new ContactList(name, address, phone, mail));
+                    Console.WriteLine("New contact added!");
                 }
                 else if (command == "show")
                 {
@@ -79,7 +80,6 @@ namespace inlämning_1_adressbok
                 }
                 else if (command == "remove")
                 {
-                    Console.Write("Type in the persons name you want to remove from contact: ");
                     string name = Console.ReadLine().ToLower();
                     for (int i = 0; i < contact.Count; i++)
                     {
@@ -88,19 +88,24 @@ namespace inlämning_1_adressbok
                             Console.WriteLine($"Removed {name} from contact list");
                             contact.RemoveAt(i);
                         }
+                        Console.Write("Type in the persons name you want to remove from contact: ");
                     }
                 }
                 else if (command == "save")
                 {
-                    Console.Write("Saved and updated your contact list file!");
                     using (StreamWriter overwriter = new StreamWriter(filepath))
                     {
                         for (int i = 0; i < contact.Count(); i++)
                         {
-                            overwriter.WriteLine("{0} {1} {2} {3}", contact[i].Name, contact[i].Address, contact[i].Phone, contact[i].Mail);
+                            overwriter.WriteLine("{0},{1},{2},{3}", contact[i].Name, contact[i].Address, contact[i].Phone, contact[i].Mail);
                         }
+                        Console.WriteLine("Saved and updated your contact list file!");
                     }
                 }
+                ////////////////////
+                else if (command == "change") { }
+
+                ////////////////////
                 else if (command == "quit")
                 {
                     Console.WriteLine("Bye!");

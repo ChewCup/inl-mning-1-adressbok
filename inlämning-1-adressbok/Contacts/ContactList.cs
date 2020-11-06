@@ -9,7 +9,6 @@ namespace inlämning_1_adressbok.Contacts
     public class ContactList
     {
         // Källa: https://www.youtube.com/watch?v=cp19RhiHHok&ab_channel=DaniKrossing
-
         public string Name, Address, Phone, Mail;
         public ContactList(string name, string address, string phone, string mail)
         {
