@@ -24,13 +24,13 @@ namespace inlämning_1_adressbok
             // Källa: https://www.c-sharpcorner.com/UploadFile/mahesh/how-to-read-a-text-file-in-C-Sharp/
             // Read file using StreamReader. Reads file line by line
             Console.WriteLine("---- Your contactlist ----");
-            using (StreamReader textlines = new StreamReader(filepath))
+            using (StreamReader textlines =  new StreamReader(filepath))
             {
                 string line;
                 // Källa: https://stackoverflow.com/questions/16725848/how-to-split-text-into-words
                 while ((line = textlines.ReadLine()) != null)
                 {
-                    string[] words = line.Split(' '); //string[] words = line.Split(new char[] { ' ' }, StringSplitOptions.None);
+                    string[] words = line.Split(new char[] { ' ' }, StringSplitOptions.None); //string[] words = line.Split(' '); 
                     contact.Add(new ContactList(words[0], words[1], words[2], words[3]));
                 }
                 textlines.Close();
@@ -52,7 +52,7 @@ namespace inlämning_1_adressbok
                 command = Console.ReadLine().ToLower();
                 if (command == "add")
                 {
-                    Console.Write("Name of your contact: ");
+                    Console.Write("New contact name: ");
                     string name = Console.ReadLine();
                     Console.Write("The address: ");
                     string address = Console.ReadLine();
@@ -79,7 +79,7 @@ namespace inlämning_1_adressbok
                 }
                 else if (command == "remove")
                 {
-                    Console.Write("Type in the persons name to remove contact: ");
+                    Console.Write("Type in the persons name you want to remove from contact: ");
                     string name = Console.ReadLine().ToLower();
                     for (int i = 0; i < contact.Count; i++)
                     {
