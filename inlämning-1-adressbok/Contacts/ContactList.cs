@@ -12,7 +12,10 @@ namespace inlämning_1_adressbok.Contacts
         public string Name, Address, Phone, Mail;
         public ContactList(string name, string address, string phone, string mail)
         {
-            this.Name = name; this.Address = address; this.Phone = phone; this.Mail = mail;
+            this.Name = name; 
+            this.Address = address; 
+            this.Phone = phone; 
+            this.Mail = mail;
         }
     }
 }
